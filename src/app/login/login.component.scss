@@ -1,5 +1,10 @@
+
 .firstNameClass{
     width: 220px;
+}
+
+.userNameClass{
+    width: 240px;
 }
 .lastNameClass{
     width: 220px;
@@ -31,9 +36,16 @@
     
 }
 
+.transparent-color{
+    background-color: transparent;
+}
+
 .passwordClass{
     width: 230px;
     margin-left: 15px;
+}
+.LogPasswordClass{
+    width: 240px; 
 }
 
 .colClass1{
@@ -48,9 +60,16 @@
 
 }
 .cardClass{
-    max-width: 472px;
+    width: 472px;
+    background-color: rgba($color: #FFFFFF, $alpha: 0.8);
+    margin-top: 20px
 }
 
+.logCardClass{
+ width: 270px;
+ background-color: rgba($color: #FFFFFF, $alpha: 0.8);
+ margin-top: 100px
+}
 
 .radioClass2{
     margin-left: 15px;
@@ -58,6 +77,301 @@
 }
 
 .r1{
-   // border: 2px solid black;
+    border: 2px solid black;
 }
 
+.fullscreen{
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.mat-tab-body-wrapper{
+    height: 100%;
+}
+
+
+.mat-tab-header{
+    box-shadow: 0px 0px 18px #000000;
+}
+
+.mat-tab-labels{
+    justify-content: center; 
+}
+
+
+.mat-tab-label-content {
+z-index: 2;
+color: #FFFFFF;
+padding: 0px;
+font-size: 17px;
+}
+
+.mat-tab-label-active{
+    opacity: 1 !important;
+}
+
+.mat-tab-label{
+    opacity: 1 !important;
+}
+
+
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: rgb(63, 81, 181);
+    z-index: -1;
+    min-height: 50px;
+    box-shadow: 0px 0px 15px #000000;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  } 
+
+.top-banner{
+    position: absolute;
+    height: 48px;
+    width: 320px;
+    left: calc(50% - 160px);
+    background-color: rgba(63, 81, 181,0.4);
+    z-index: 1;
+    border-radius: 6px;
+
+}
+
+.btnClass{
+    width: 240px;
+    min-height: 36px;
+}
+
+.btnRegIconClass{
+    position: absolute;
+    float: right;
+    margin-top: 6px;
+    margin-left: 55px;
+}
+.btnLogIconClass{
+    position: absolute;
+    float: right;
+    margin-top: 6px;
+    margin-left: 65px;
+}
+
+.btnRegSpinnerClass{
+    align-self: center;
+    
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #FFFFFF;
+  }
+
+.divShakeClass {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+  
+
+
+
+//*****************************
+
+#fountainG{
+	position:relative;
+	width:102px;
+	height:12px;
+	margin:auto;
+}
+
+.fountainG{
+	position:absolute;
+	top:0;
+	background-color:rgb(255,255,255);
+	width:12px;
+	height:12px;
+	animation-name:bounce_fountainG;
+		-o-animation-name:bounce_fountainG;
+		-ms-animation-name:bounce_fountainG;
+		-webkit-animation-name:bounce_fountainG;
+		-moz-animation-name:bounce_fountainG;
+	animation-duration:0.645s;
+		-o-animation-duration:0.645s;
+		-ms-animation-duration:0.645s;
+		-webkit-animation-duration:0.645s;
+		-moz-animation-duration:0.645s;
+	animation-iteration-count:infinite;
+		-o-animation-iteration-count:infinite;
+		-ms-animation-iteration-count:infinite;
+		-webkit-animation-iteration-count:infinite;
+		-moz-animation-iteration-count:infinite;
+	animation-direction:normal;
+		-o-animation-direction:normal;
+		-ms-animation-direction:normal;
+		-webkit-animation-direction:normal;
+		-moz-animation-direction:normal;
+	transform:scale(.3);
+		-o-transform:scale(.3);
+		-ms-transform:scale(.3);
+		-webkit-transform:scale(.3);
+		-moz-transform:scale(.3);
+	border-radius:8px;
+		-o-border-radius:8px;
+		-ms-border-radius:8px;
+		-webkit-border-radius:8px;
+		-moz-border-radius:8px;
+}
+
+#fountainG_1{
+	left:0;
+	animation-delay:0.256s;
+		-o-animation-delay:0.256s;
+		-ms-animation-delay:0.256s;
+		-webkit-animation-delay:0.256s;
+		-moz-animation-delay:0.256s;
+}
+
+#fountainG_2{
+	left:13px;
+	animation-delay:0.3225s;
+		-o-animation-delay:0.3225s;
+		-ms-animation-delay:0.3225s;
+		-webkit-animation-delay:0.3225s;
+		-moz-animation-delay:0.3225s;
+}
+
+#fountainG_3{
+	left:25px;
+	animation-delay:0.389s;
+		-o-animation-delay:0.389s;
+		-ms-animation-delay:0.389s;
+		-webkit-animation-delay:0.389s;
+		-moz-animation-delay:0.389s;
+}
+
+#fountainG_4{
+	left:38px;
+	animation-delay:0.4555s;
+		-o-animation-delay:0.4555s;
+		-ms-animation-delay:0.4555s;
+		-webkit-animation-delay:0.4555s;
+		-moz-animation-delay:0.4555s;
+}
+
+#fountainG_5{
+	left:51px;
+	animation-delay:0.522s;
+		-o-animation-delay:0.522s;
+		-ms-animation-delay:0.522s;
+		-webkit-animation-delay:0.522s;
+		-moz-animation-delay:0.522s;
+}
+
+#fountainG_6{
+	left:64px;
+	animation-delay:0.5885s;
+		-o-animation-delay:0.5885s;
+		-ms-animation-delay:0.5885s;
+		-webkit-animation-delay:0.5885s;
+		-moz-animation-delay:0.5885s;
+}
+
+#fountainG_7{
+	left:76px;
+	animation-delay:0.645s;
+		-o-animation-delay:0.645s;
+		-ms-animation-delay:0.645s;
+		-webkit-animation-delay:0.645s;
+		-moz-animation-delay:0.645s;
+}
+
+#fountainG_8{
+	left:89px;
+	animation-delay:0.7115s;
+		-o-animation-delay:0.7115s;
+		-ms-animation-delay:0.7115s;
+		-webkit-animation-delay:0.7115s;
+		-moz-animation-delay:0.7115s;
+}
+
+
+
+@keyframes bounce_fountainG{
+	0%{
+	transform:scale(1);
+		background-color:rgb(255,255,255);
+	}
+
+	100%{
+	transform:scale(.3);
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-o-keyframes bounce_fountainG{
+	0%{
+	-o-transform:scale(1);
+		background-color:rgb(255,255,255);
+	}
+
+	100%{
+	-o-transform:scale(.3);
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-ms-keyframes bounce_fountainG{
+	0%{
+	-ms-transform:scale(1);
+		background-color:rgb(255,255,255);
+	}
+
+	100%{
+	-ms-transform:scale(.3);
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-webkit-keyframes bounce_fountainG{
+	0%{
+	-webkit-transform:scale(1);
+		background-color:rgb(255,255,255);
+	}
+
+	100%{
+	-webkit-transform:scale(.3);
+		background-color:rgb(255,255,255);
+	}
+}
+
+@-moz-keyframes bounce_fountainG{
+	0%{
+	-moz-transform:scale(1);
+		background-color:rgb(255,255,255);
+	}
+
+	100%{
+	-moz-transform:scale(.3);
+		background-color:rgb(255,255,255);
+	}
+}

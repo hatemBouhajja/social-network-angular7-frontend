@@ -20,6 +20,8 @@ import 'hammerjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -44,11 +46,13 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatNativeDateModule,
     NgbModule,
     MatRadioModule,
-    MatTabsModule
-
-
+    MatTabsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
+
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

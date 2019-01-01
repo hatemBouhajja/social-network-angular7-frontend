@@ -56,9 +56,11 @@
     text-align: center;
 
 }
-.passwordStrengthClass{
 
-}
+.background{
+	background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%)
+  }
+
 .cardClass{
     width: 472px;
     background-color: rgba($color: #FFFFFF, $alpha: 0.8);
@@ -80,6 +82,31 @@
     border: 2px solid black;
 }
 
+.mat-progress-bar.mat-warn .mat-progress-bar-buffer {
+ // background-color: #ffcdd2;
+	background-color : #c5cae9;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+ // background-color: #ff80ab;
+	background-color : #c5cae9;
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar-background {
+//  fill: #ffcdd2;
+	fill: #c5cae9;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-background {
+//   fill: #ff80ab;
+	fill: #c5cae9;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+   background-color: transparent;
+   box-shadow: 0px 2px 10px 0px #888888;
+}
+
 .fullscreen{
     height: 100%;
     width: 100%;
@@ -93,7 +120,7 @@
 
 
 .mat-tab-header{
-    box-shadow: 0px 0px 18px #000000;
+    box-shadow: 0px 0px 18px 1px #000000;
 }
 
 .mat-tab-labels{
@@ -117,26 +144,37 @@ font-size: 17px;
 }
 
 
+.alert-danger {
+    color: #FFFFFF;
+    background-color: #F75676;
+    border-color: #f5c6cb;
+}
 
+  
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
-    background: rgb(63, 81, 181);
+	background-image: linear-gradient(135deg, #ecc344 0%, #e42d7f 100%);
     z-index: -1;
     min-height: 50px;
-    box-shadow: 0px 0px 15px #000000;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    box-shadow: 0px 0px 13px 3px #000000;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
   } 
+
 
 .top-banner{
     position: absolute;
     height: 48px;
     width: 320px;
     left: calc(50% - 160px);
-    background-color: rgba(63, 81, 181,0.4);
+	box-shadow: 0px 0px 15px #000000;
+	opacity: 0.5;
     z-index: 1;
-    border-radius: 6px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
 
 }
 
@@ -375,3 +413,118 @@ font-size: 17px;
 		background-color:rgb(255,255,255);
 	}
 }
+
+
+//*****************************
+
+
+.span-1{
+	position: absolute;
+	top : 50px;
+    left: -2%;
+	background: rgba(255,255,255,.1);
+	width: 150px;
+	height: 75px;
+
+	border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 75px;
+	border-bottom-right-radius: 75px;
+
+}
+
+.span-2{
+	position: absolute;
+	top: 10%;
+    right: 4%;
+	background: rgba(255,255,255,.1);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	
+}
+
+.span-3{
+	position: absolute;
+	top: 280px;
+    right: 5.66666%;
+	background: rgba(255,255,255,.3);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.span-4{
+	position: absolute;
+	top: 320px;
+    right: 7%;
+	background: rgba(255,255,255,.15);
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}
+
+.span-5{
+	position: absolute;
+	top: 38%;
+    right: auto;
+    left: 1%;
+	background: rgba(255,255,255,.05);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	
+}
+
+.span-6{
+	position: absolute;
+	top: 44%;
+    right: auto;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+	background: rgba(255,255,255,.15);
+	border-radius: 50%;
+}
+
+.span-7{
+	position: absolute;
+	right: 36%;
+    bottom: 50%;
+	background: rgba(255,255,255,.04);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.span-8{
+	position: absolute;
+	right: 2%;
+    bottom: 70px;
+	background: rgba(255,255,255,.2);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+.span-9{
+	position: absolute;
+	right: 2%;
+    bottom: 1%;
+	background: rgba(255,255,255,.1);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.span-10{
+	position: absolute;
+	right: auto;
+    bottom: 1%;
+    left: 1%;
+	background: rgba(255,255,255,.05);
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+

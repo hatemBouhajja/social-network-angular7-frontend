@@ -25,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatTabsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule
   ],
 
   providers: [MatDatepickerModule],

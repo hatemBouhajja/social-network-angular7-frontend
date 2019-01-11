@@ -67,9 +67,6 @@ export class LoginComponent implements OnInit {
     this.inputType = this.inputType === 'text' ? 'password' : 'text';
   }
 
-  getUrl() {
-    return "url('https://img.wallpaper.sc/desktop/images/5k/thumbnail/desktop-pc-1920x1080-thumbnail_00010.jpg')";
-  }
 
   isFormValid() {
     if ((this.myForm.invalid) || (this.gender == null) || (this.passwordStrength < 100)) {

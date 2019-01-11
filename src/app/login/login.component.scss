@@ -141,6 +141,7 @@ font-size: 17px;
 
 .mat-tab-label{
     opacity: 1 !important;
+    box-shadow: 0px 0px 2.7px 0.5px #000000;
 }
 
 
@@ -153,7 +154,7 @@ font-size: 17px;
   
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
 	background-image: linear-gradient(135deg, #ecc344 0%, #e42d7f 100%);
-    z-index: -1;
+    z-index: 1;
     min-height: 50px;
     box-shadow: 0px 0px 13px 3px #000000;
     border-top-left-radius: 0px;
@@ -161,22 +162,6 @@ font-size: 17px;
     border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
   } 
-
-
-.top-banner{
-    position: absolute;
-    height: 48px;
-    width: 320px;
-    left: calc(50% - 160px);
-	box-shadow: 0px 0px 15px #000000;
-	opacity: 0.5;
-    z-index: 1;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
-
-}
 
 .btnClass{
     width: 240px;

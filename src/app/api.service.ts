@@ -9,6 +9,7 @@ export class ApiService {
   getAllUsersURL = 'http://localhost:8080/user/get/all';
   registerUserURL = 'http://localhost:8080/user/reg/9995';
 
+
   constructor(private httpClient: HttpClient) { }
   getData() {
     return this.httpClient.get(this.getAllUsersURL);
@@ -16,4 +17,5 @@ export class ApiService {
   postData(user) {
     return this.httpClient.post(this.registerUserURL, user, { responseType: 'text' });
   }
+
 }

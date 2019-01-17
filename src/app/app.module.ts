@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileSetupComponent } from './profile-setup/profile-setup.component';
-
+import { DialogOverview } from './profile-setup/profile-setup.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -26,13 +26,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileSetupComponent
+    ProfileSetupComponent,
+    DialogOverview
+  ],
+  entryComponents: [
+    DialogOverview
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,9 @@ import { MatDividerModule } from '@angular/material/divider';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    SweetAlert2Module.forRoot()
   ],
 
   providers: [MatDatepickerModule],

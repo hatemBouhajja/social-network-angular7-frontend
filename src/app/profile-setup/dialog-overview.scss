@@ -1,0 +1,118 @@
+
+
+.panel{
+    width: 300px; 
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 70vh;
+    height: 70vh;
+    min-height: 0px;
+    margin: 0px;
+    padding-left: 10px;
+}
+
+.imgClass{
+    max-height: 70vh; 
+    max-width: 50vw;
+    object-fit: cover;
+}
+
+.commentsPanel{
+    background-color: white; 
+    height: calc(100% - 6vw) ;
+    max-height: calc(100% - 6vw) ;
+
+    min-height: 0px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    border-radius: 2px;
+    overflow: auto;
+    }
+
+
+
+    .addCommentPanel{
+        background-color: white; 
+        width: calc(100% - 25px); 
+        max-width: calc(100% - 25px); 
+        min-width: 0px;
+
+        height: 5.5vw;
+        max-height: 5.5vw;
+        min-height: 0px;
+        padding-left: 10px;
+        padding-top: 7px;
+        border-radius: 2px;
+        margin: 0px;
+
+        position: absolute;
+        bottom: 0px;
+    }
+   
+    .matComment{
+        width: calc(100% - 40px); 
+        max-width: calc(100% - 40px); 
+        min-width: 0px;
+        font-size: 13px;
+    }
+
+
+    .commentIcon{
+        position: absolute;
+        right: 10px;
+        top: 24px;
+        color: #4758b8;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .commentIcon:hover{
+        right: 7px;
+        color: #727baf;
+    }
+
+
+    .mat-input-element {
+     caret-color: #3f51b5;
+    }
+
+    .r1{
+        border: 1px solid red;
+    }
+    
+p{
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0px;
+    margin: 0px;
+    padding-top : 5px;
+    padding-bottom: 5px;  
+}
+
+.separator{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.commentsTopLabel{
+    height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+  .commenterImage{
+    height: 40px;
+    width: 40px;
+    margin-left: -3px;
+    margin-top: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+  }

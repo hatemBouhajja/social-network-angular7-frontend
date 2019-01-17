@@ -1,5 +1,4 @@
 :root{
-    --margin-top-add : 50px;
     --photo-margin-left : 10%;
 }
 
@@ -30,7 +29,7 @@
 
 .background{
     background: linear-gradient(150deg,#281483 15%,#8f6ed5 70%,#d782d9 94%);
-    height: auto ;
+    height: 100% ;
     min-block-size: 100%;
     width: 100%;
     padding: 0px;
@@ -44,7 +43,23 @@
   }
 
 .r1{
-    border: 2px solid black;
+    border: 1px solid red;
+}
+
+.r2{
+    border: 1px solid greenyellow;
+}
+
+.r3{
+    border: 1px solid blue;
+}
+
+.r4{
+    border: 1px solid pink;
+}
+
+.r5{
+    border: 1px solid purple;
 }
 
 
@@ -59,10 +74,9 @@
 .globalCard{
     height: auto;
     z-index: 0;
-    width: calc(100% - 160px);
+    width: calc(100% - 80px);
     margin-top: -1.9px ;
-    border-top-left-radius: 0px !important;
-    border-top-right-radius: 0px !important;
+    border-radius: 5px !important;
 
 }
 
@@ -71,9 +85,9 @@
 }
 
 .tabRow{
-    width: calc(100% - 160px); 
+    width: calc(100% + 30px); 
     padding : 0;
-    margin-top: var(--margin-top-add);
+
 }
 
 .mat-tab-header{
@@ -90,7 +104,6 @@
 }
 
 .bannerCol{
-    background-color: white;
     height: 50px;
     margin-top: 55px;
 
@@ -133,21 +146,18 @@
     box-shadow: 0px -2px 3px 0px rgba(0,0,0,0.5);
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    // background-color: #281483
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #281483
 }
 
 
 .mat-tab-label.mat-tab-disabled {
     cursor: default;
     background-color: white;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
     border-color: white;
-
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+    border-top-right-radius: 5px;
 }
 
  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
@@ -281,15 +291,16 @@
 
 .photoClass{
     position: relative;
-    margin-top: -30px;
+    margin-top: 10px;
     margin-left: var(--photo-margin-left);
     height: 170px;
     width: 170px;
     border-radius: 50%;
     background-size: cover;
+    background-position: 50% 10%;
     background-repeat: no-repeat;
     border: 3px solid white;
-    box-shadow: 0px 8px 10px 0px rgba(0,0,0,0.07)
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.3)
     
 }
 
@@ -335,3 +346,198 @@
   .my-headers-align .mat-expansion-panel-header-description {
     flex-basis: 0;
   }
+
+  .nav-link{
+    cursor: pointer;
+  }
+
+
+  .gridPhoto{
+      min-height: 200px;
+      max-height: 200px;
+      min-width: 200px;
+      max-width: 200px; 
+  }
+
+  .gridRow{
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+
+
+  /* Create four equal columns that sits next to each other */
+.column {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .column {
+      -ms-flex: 50%;
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .mat-dialog-container{
+      background-color: rgba(0,0,0,0.8);
+  }
+
+
+  .postsRow{
+      min-height: 1000px;
+      background-color: white;
+      padding: 0px;
+      margin: 0px;
+  }
+
+  .postsCol{
+      padding: 0px;
+      margin: 0px;
+      margin-left: -20px;
+  }
+
+  .post{
+    width: 450px;
+    max-width: 450px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 0px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+
+  .postHeader{
+      height: 70px;
+  }
+
+  .postBody{
+      height: auto;
+      width: 450px;
+      max-width: 450px;
+      max-height: 400px;
+      padding: 0px;
+      overflow: hidden;
+  }
+
+  .postImage{
+     display: block;
+     height: auto;
+     width: 100%; 
+     object-fit: cover;
+  }
+
+  .postFooter{
+      height: 60px;
+  }
+
+  .postMatComment{
+    width: calc(100% - 120px); 
+    max-width: calc(100% - 120px); 
+    margin-top: 7px;
+    margin-left: 15px;
+  }
+
+  .postCommentIcon{
+    margin-left: 20px;
+    margin-top: 8px;
+    color: #4758b8;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.postCommentIcon:hover{
+    color: #727baf;
+    transform: rotate(-40deg);
+}
+
+
+.mat-input-element {
+ caret-color: #3f51b5;
+}
+
+
+.postCommenterImage{
+    height: 40px;
+    width: 40px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.postOwnerImage{
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 0px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.shareIcon{
+    float: right;
+    margin-top: 25px;
+    margin-right: 10px;
+    color: #4758b8;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.shareIcon:hover{
+    color: #99a1d4;
+   // transform: rotate(90deg);
+}
+
+
+.log{
+    position: absolute;
+    height: auto;
+    max-height: 80vh;
+    width: 17.4vw;
+    right: 15px;
+    margin-top: 19.2px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    overflow: auto;
+    background-color: white;
+}
+
+.fixedLog{
+    position: fixed;
+    height: auto;
+    max-height: 80vh;
+    width: 17.4vw;
+    right: 55px;
+    top: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 0px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    overflow: auto;
+    background-color: white;
+}

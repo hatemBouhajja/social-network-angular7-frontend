@@ -1,4 +1,4 @@
-<div class="background row">
+<div class="background row" style="min-height: 100vh">
     <div class="fullscreen col" align="center">
         <span class="span-1"></span>
         <span class="span-2"></span>
@@ -10,63 +10,64 @@
         <span class="span-8"></span>
         <span class="span-9"></span>
         <span class="span-10"></span>
-        <div class="row tabRow">
-            <div class=" bannerCol col align-self-start" align="left">
-                <div class="row">
-                    <div class=" col-4" style="min-width: 200px; margin-top: 18px">
-                        <button mat-raised-button class="buttonAdd">Add Friend</button>
-                        <button mat-raised-button class="buttonMsg">Message</button>
-                    </div>
-                    <div class="col-3" style=" min-width: 150px;">
-                        <div class="photoClass" style="background-image: url('https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');">
-                        </div>
-                        <div class="overlay">
-                            <i class="photoIcon fas fa-pencil-alt"></i>
-                        </div>
-                    </div>
-                    <div class="row" style="min-width: 222px;margin-left: 50px; max-height: 85px;">
-                        <div class="col" style="text-align: center; min-width: 70px;  padding:0px;">
-                            <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
-                            <br>
-                            <label style="color:#adb5bd; ">Friends</label>
 
+        <mat-card class="globalCard" style="margin-top: 70px;">
+            <div class="row tabRow" style="margin-top: -71px;">
+                <div class=" bannerCol col align-self-start" align="left">
+                    <div class="row">
+                        <div class=" col-4" style="min-width: 200px; margin-top: 18px">
+                            <button mat-raised-button (click)="addfriend()" class="buttonAdd">Add Friend</button>
+                            <button mat-raised-button (click)="sendMessage()" class="buttonMsg">Message</button>
                         </div>
-                        <div class="col" style="text-align: center; min-width: 70px; padding:0px;">
-                            <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
-                            <br>
-                            <label style="color:#adb5bd;">Photos</label>
+                        <div class="col-3" style=" min-width: 150px;">
+                            <div class="photoClass" style="background-image: url('https://picsum.photos/1200/800?image=289');">
+                            </div>
+                            <div class="overlay">
+                                <i class="photoIcon fas fa-pencil-alt"></i>
+                            </div>
                         </div>
-                        <div class="col" style="text-align: center; min-width: 70px; padding:0px;">
-                            <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
-                            <br>
-                            <label style="color:#adb5bd;">Comments</label>
+                        <div class="row" style="min-width: 222px;margin-left: 50px; max-height: 85px;">
+                            <div class="col" style="text-align: center; min-width: 70px;  padding:0px;">
+                                <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
+                                <br>
+                                <label style="color:#adb5bd; ">Friends</label>
+
+                            </div>
+                            <div class="col" style="text-align: center; min-width: 70px; padding:0px;">
+                                <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
+                                <br>
+                                <label style="color:#adb5bd;">Photos</label>
+                            </div>
+                            <div class="col" style="text-align: center; min-width: 70px; padding:0px;">
+                                <strong><label style="font-size:18px; color:#525f7f; margin-top: 20px">60</label></strong>
+                                <br>
+                                <label style="color:#adb5bd;">Comments</label>
+                            </div>
                         </div>
-                    </div>
-                    <div>
+                        <div>
+                        </div>
                     </div>
                 </div>
+                <div class="col-3 tabCol align-self-end">
+                    <mat-tab-group [selectedIndex]="selectedTab" class="tabGroup">
+                        <mat-tab label="" disabled>
+                        </mat-tab>
+                        <mat-tab label="Home">
+                        </mat-tab>
+                        <mat-tab label="Profile">
+                        </mat-tab>
+                        <mat-tab label="Settings">
+                        </mat-tab>
+                        <mat-tab label="" disabled>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
             </div>
-            <div class="col-3 tabCol align-self-end">
-                <mat-tab-group [selectedIndex]="selectedTab" class="tabGroup">
-                    <mat-tab label="" disabled>
-                    </mat-tab>
-                    <mat-tab label="Home">
-                    </mat-tab>
-                    <mat-tab label="Profile">
-                    </mat-tab>
-                    <mat-tab label="Settings">
-                    </mat-tab>
-                    <mat-tab label="" disabled>
-                    </mat-tab>
-                </mat-tab-group>
-            </div>
-        </div>
 
-        <mat-card class="globalCard">
-            <div class="row" style="margin-top: 30px">
 
+            <div class="row" style="margin-top: 50px">
                 <div class="col-3" style="text-align: start;">
-                    <div style="text-align: end; margin-top: 4px; max-width: 235px; width:235px;">
+                    <div style="text-align: end; margin-top: 4px; max-width: 210px; width:210px;">
                         <div>
                             <label style="font-size: 17px; color:#32325d;">Solution Manager</label>
                         </div>
@@ -90,22 +91,25 @@
                 <div class="col-2">
                 </div>
             </div>
-            <div style="margin-top: 0px;">
+            <div style="margin-top: 20px;">
                 <ul class="nav nav-tabs" style="margin-left: 223px;">
-                    <li class="nav-item">
-                        <a class="nav-link">Posts</a>
+                    <li class="nav-item" (click)="infoTabStatus=0; updateInfoTabStatus()">
+                        <a class="nav-link" #postsTab>Posts</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active">Info</a>
+                    <li class="nav-item" (click)="infoTabStatus=1; updateInfoTabStatus()">
+                        <a class="nav-link" #infoTab>Info</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Photos</a>
+                    <li class="nav-item" (click)="infoTabStatus=2; updateInfoTabStatus()">
+                        <a class="nav-link" #photosTab>Photos</a>
                     </li>
                 </ul>
                 <div class="tabDevider">
                 </div>
             </div>
-            <div class="expansionDiv" style="margin-top: 10px;">
+
+
+            <!--**********************************************************************************************-->
+            <div *ngIf="infoTabStatus==1" class="expansionDiv" style="margin-top: 10px;">
                 <mat-accordion class="expansion-panel my-headers-align">
                     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
                         <mat-expansion-panel-header>
@@ -299,6 +303,101 @@
                     </mat-expansion-panel>
                 </mat-accordion>
             </div>
+            <!--**********************************************************************************************-->
+            <div *ngIf="infoTabStatus==2" class="row gridRow">
+                <div *ngFor="let item of items" class="column">
+                    <img src="https://picsum.photos/1200/800?image=289" (click)="openDialog('https://picsum.photos/1200/800?image=289')"
+                        style="width:100%">
+                </div>
+            </div>
+            <!--**********************************************************************************************-->
+            <div *ngIf="infoTabStatus==0" class="row postsRow">
+                <div class="postsCol col-10">
+                    <div class="row" style="padding: 0px; margin: 0px;">
+                        <div *ngFor="let item of items" class="post">
+                            <div class="postHeader" align="start">
+                                <img class="postOwnerImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                                &nbsp;
+                                <strong><label style="color:#3f51b5; margin-top: 20px">Boulouna143</label></strong>
+                                &nbsp;
+                                <label style="color:#a7a7b6; margin-top: 20px">12/08/2018 15:33</label>
+                                <i class="shareIcon fa-lg fas fa-share-square"></i>
+                            </div>
+                            <div class="postBody">
+                                <div>
+                                    <img class="postImage" src="https://picsum.photos/800/800?image=289">
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                            <div class="postFooter">
+                                <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                                <mat-form-field class="postMatComment">
+                                    <textarea matInput rows="1" id="style-2" style="color:black" placeholder="Leave a comment"></textarea>
+                                </mat-form-field>
+                                <mat-icon class="postCommentIcon">send</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+                <div class="log" id="style-2" #log>
+                    <div>
+                        <label style="color:#adb5bd;">Recent Activities</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+
+                    <div>
+                        <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+                    </div>
+                </div>
+            </div>
+
+
         </mat-card>
         <div class="row bottomSpacer"></div>
     </div>

@@ -64,7 +64,8 @@
 .cardClass{
     width: 472px;
     background-color: rgba($color: #FFFFFF, $alpha: 0.8);
-    margin-top: 20px
+	margin-top: 20px;
+	min-height: 100%;
 }
 
 .logCardClass{
@@ -79,7 +80,7 @@
 }
 
 .r1{
-    border: 2px solid black;
+    border: 2px solid red;
 }
 
 .mat-progress-bar.mat-warn .mat-progress-bar-buffer {
@@ -108,14 +109,15 @@
 }
 
 .fullscreen{
-    height: 100%;
+	min-height: 100%;
     width: 100%;
     padding: 0px;
     margin: 0px;
 }
 
 .mat-tab-body-wrapper{
-    height: 100%;
+	height: 100%;
+	min-height: 100vh;
 }
 
 

@@ -20,9 +20,9 @@
                             <button mat-raised-button (click)="sendMessage()" class="buttonMsg">Message</button>
                         </div>
                         <div class="col-3" style=" min-width: 150px;">
-                            <div class="photoClass" style="background-image: url('https://picsum.photos/1200/800?image=289');">
+                            <div class="photoClass" [ngStyle]="{ 'background-image': 'url(' + profilePhoto + ')'}">
                             </div>
-                            <div class="overlay">
+                            <div class="overlay" (click)="changePhoto()">
                                 <i class="photoIcon fas fa-pencil-alt"></i>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col-3 tabCol align-self-end">
-                    <mat-tab-group [selectedIndex]="selectedTab" class="tabGroup">
+                    <mat-tab-group [selectedIndex]="selectedTab" class="tabGroup" (selectedTabChange)="tabClick($event)">
                         <mat-tab label="" disabled>
                         </mat-tab>
                         <mat-tab label="Home">
@@ -69,10 +69,12 @@
                 <div class="col-3" style="text-align: start;">
                     <div style="text-align: end; margin-top: 4px; max-width: 210px; width:210px;">
                         <div>
-                            <label style="font-size: 17px; color:#32325d;">Solution Manager</label>
+                            <label *ngIf="occupation!='Education/Job'" style="font-size: 17px; color:#32325d;">{{occupation}}</label>
+                            <label *ngIf="occupation=='Education/Job'" style="font-size: 17px; color:#32325d;"></label>
                         </div>
                         <div>
-                            <label style="font-size: 17px; color:#32325d;">University of Sesame</label>
+                            <label *ngIf="organisation!='Organisation'" style="font-size: 17px; color:#32325d;">{{organisation}}</label>
+                            <label *ngIf="organisation=='Organisation'" style="font-size: 17px; color:#32325d;"></label>
                         </div>
                     </div>
                 </div>
@@ -80,19 +82,21 @@
                 <div class="col-4"></div>
                 <div class="col" style="text-align: start; margin-left: -180px">
                     <div>
-                        <label style="font-size: 24px; color:#32325D;">Hatem Bouhajja</label>
+                        <label style="font-size: 24px; color:#32325D;">{{fullName}} </label>
                         &nbsp;
                         <label style="font-size: 24px; font-weight: 300; color:#32325d;">.24</label>
                     </div>
                     <div>
-                        <label style="font-size: 19px; font-weight: 300; color:#32325d;">Ariana, Tunisia</label>
+                        <label *ngIf="city!='City' && country!='Country'" style="font-size: 19px; font-weight: 300; color:#32325d;">{{city}},
+                            {{country}}</label>
+                        <label *ngIf="city=='City' || country=='Country'" style="font-size: 19px; font-weight: 300; color:#32325d;"></label>
                     </div>
                 </div>
                 <div class="col-2">
                 </div>
             </div>
             <div style="margin-top: 20px;">
-                <ul class="nav nav-tabs" style="margin-left: 223px;">
+                <ul class="nav nav-tabs" style="margin-left: 213px;">
                     <li class="nav-item" (click)="infoTabStatus=0; updateInfoTabStatus()">
                         <a class="nav-link" #postsTab>Posts</a>
                     </li>
@@ -101,6 +105,9 @@
                     </li>
                     <li class="nav-item" (click)="infoTabStatus=2; updateInfoTabStatus()">
                         <a class="nav-link" #photosTab>Photos</a>
+                    </li>
+                    <li class="nav-item" (click)="infoTabStatus=3; updateInfoTabStatus()">
+                        <a class="nav-link" #friendsTab>Friends</a>
                     </li>
                 </ul>
                 <div class="tabDevider">
@@ -117,17 +124,17 @@
                                 Full account name
                             </mat-panel-title>
                             <mat-panel-description>
-                                Hatem Bouhajja
+                                {{fullName}}
                                 <mat-icon>account_circle</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput placeholder="First name">
+                            <input matInput placeholder="First name" [(ngModel)]="firstName">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput placeholder="Last name">
+                            <input matInput placeholder="Last name" [(ngModel)]="lastName">
                         </mat-form-field>
 
                         <mat-action-row>
@@ -141,19 +148,19 @@
                                 Current address
                             </mat-panel-title>
                             <mat-panel-description>
-                                Ariana, Tunisia, 2083
+                                {{city}}, {{country}}, {{zip}}
                                 <mat-icon>map</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput placeholder="City">
+                            <input matInput placeholder="City" [(ngModel)]="city">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput placeholder="Country">
+                            <input matInput placeholder="Country" [(ngModel)]="country">
                         </mat-form-field>
                         <mat-form-field>
-                            <input matInput type="number" min="1" placeholder="Zip Code">
+                            <input matInput type="number" min="1" placeholder="Zip Code" [(ngModel)]="zip">
                         </mat-form-field>
                         <mat-action-row>
                             <button mat-button color="warn" (click)="prevStep()">Previous</button>
@@ -167,13 +174,13 @@
                                 Birthday
                             </mat-panel-title>
                             <mat-panel-description>
-                                YYYY-MM-DD
+                                {{birhDate}}
                                 <mat-icon>date_range</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()"
+                            <input matInput placeholder="Date" [matDatepicker]="picker" [(ngModel)]="birhDate" (focus)="picker.open()"
                                 readonly>
                         </mat-form-field>
                         <mat-datepicker #picker></mat-datepicker>
@@ -190,17 +197,17 @@
                                 Education & Work
                             </mat-panel-title>
                             <mat-panel-description>
-                                Software Engeneering, SESAME University
+                                {{occupation}}, {{organisation}}
                                 <mat-icon>domain</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput placeholder="Field/Job">
+                            <input matInput placeholder="Field/Job" [(ngModel)]="occupation">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput placeholder="Organisation name">
+                            <input matInput placeholder="Organisation name" [(ngModel)]="organisation">
                         </mat-form-field>
 
                         <mat-action-row>
@@ -215,14 +222,17 @@
                                 Current Civil Status
                             </mat-panel-title>
                             <mat-panel-description>
-                                Single
+                                {{civilStatus}}
                                 <mat-icon>people</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
-                        <mat-form-field>
-                            <input matInput placeholder="Current Civil Status">
-                        </mat-form-field>
+                        <mat-select placeholder="Current Civil Status" style="width:200px;" [(value)]="civilStatus">
+                            <mat-option [value]="'Civil Status'">None</mat-option>
+                            <mat-option [value]="'Single'">Single</mat-option>
+                            <mat-option [value]="'Married'">Married</mat-option>
+                        </mat-select>
+
 
                         <mat-action-row>
                             <button mat-button color="warn" (click)="prevStep()">Previous</button>
@@ -237,13 +247,13 @@
                                 Email
                             </mat-panel-title>
                             <mat-panel-description>
-                                hatembouhajja@gmail.com
+                                {{email}}
                                 <mat-icon>mail</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
-                        <mat-form-field>
-                            <input matInput placeholder="Email">
+                        <mat-form-field style="width:300px">
+                            <input matInput placeholder="Email" [(ngModel)]="email">
                         </mat-form-field>
 
 
@@ -261,13 +271,13 @@
                                 Phone Number
                             </mat-panel-title>
                             <mat-panel-description>
-                                0021650204449
+                                {{phone}}
                                 <mat-icon>phone_android</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
 
                         <mat-form-field>
-                            <input matInput type="number" min="1" placeholder="Phone number">
+                            <input matInput type="number" min="1" placeholder="Phone number" [(ngModel)]="phone">
                         </mat-form-field>
 
                         <mat-action-row>
@@ -283,7 +293,7 @@
                                 Password
                             </mat-panel-title>
                             <mat-panel-description>
-                                *************
+                                **********
                                 <mat-icon>lock</mat-icon>
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -302,6 +312,12 @@
                         </mat-action-row>
                     </mat-expansion-panel>
                 </mat-accordion>
+                <div class="confirmationDiv">
+                    <button mat-raised-button style="float: right" (click)="updateUser()" color="primary">Save</button>
+                </div>
+                <div style="height: 40px;">
+
+                </div>
             </div>
             <!--**********************************************************************************************-->
             <div *ngIf="infoTabStatus==2" class="row gridRow">
@@ -314,31 +330,85 @@
             <div *ngIf="infoTabStatus==0" class="row postsRow">
                 <div class="postsCol col-10">
                     <div class="row" style="padding: 0px; margin: 0px;">
-                        <div *ngFor="let item of items" class="post">
-                            <div class="postHeader" align="start">
-                                <img class="postOwnerImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-                                &nbsp;
-                                <strong><label style="color:#3f51b5; margin-top: 20px">Boulouna143</label></strong>
-                                &nbsp;
-                                <label style="color:#a7a7b6; margin-top: 20px">12/08/2018 15:33</label>
-                                <i class="shareIcon fa-lg fas fa-share-square"></i>
-                            </div>
-                            <div class="postBody">
-                                <div>
-                                    <img class="postImage" src="https://picsum.photos/800/800?image=289">
+
+
+                        <div class="col-auto" style="padding: 0px; margin: 0px;">
+                            <div *ngFor="let post of posts; let i = index" class="post">
+                                <div *ngIf="i%2==0">
+                                    <div class="postHeader" align="start">
+                                        <img class="postOwnerImage" [src]='post.ownerPhoto'>
+                                        &nbsp;
+                                        <strong><label style="color:#3f51b5; margin-top: 20px">{{post.owner}}</label></strong>
+                                        &nbsp;
+                                        <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
+                                        <i class="shareIcon fa-lg fas fa-share-square"></i>
+                                    </div>
+                                    <div class="postBody" (click)="openDialog(post.body,post.comments)">
+                                        <div *ngIf="post.type=='image'">
+                                            <img class="postImage" [src]='post.body'>
+                                        </div>
+                                        <div *ngIf="post.type=='text'">
+                                            <div class="labelClass">
+                                                <label>aaaaaaaaaa sdfqsdfq sdf qsdfq dfqdf qdfqdfq dsfq dfq
+                                                    dfqqsdfqdfqdf qdfqdfqdfq aaaaaa</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <div class="postFooter">
+                                        <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                                        <mat-form-field class="postMatComment">
+                                            <textarea matInput rows="1" id="style-2" [(ngModel)]="post.tempComment"
+                                                style="color:black" placeholder="Leave a comment"></textarea>
+                                        </mat-form-field>
+                                        <mat-icon class="postCommentIcon">send</mat-icon>
+                                    </div>
                                 </div>
-                                <div>
-                                </div>
-                            </div>
-                            <div class="postFooter">
-                                <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-                                <mat-form-field class="postMatComment">
-                                    <textarea matInput rows="1" id="style-2" style="color:black" placeholder="Leave a comment"></textarea>
-                                </mat-form-field>
-                                <mat-icon class="postCommentIcon">send</mat-icon>
                             </div>
                         </div>
+
+
+                        <div class="col-auto" style="padding: 0px; margin: 0px;">
+                            <div *ngFor="let post of posts; let j = index" class="post">
+                                <div *ngIf="j%2!=0">
+                                    <div class="postHeader" align="start">
+                                        <img class="postOwnerImage" [src]='post.ownerPhoto'>
+                                        &nbsp;
+                                        <strong><label style="color:#3f51b5; margin-top: 20px">{{post.owner}}</label></strong>
+                                        &nbsp;
+                                        <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
+                                        <i class="shareIcon fa-lg fas fa-share-square"></i>
+                                    </div>
+                                    <div class="postBody" (click)="openDialog(post.body,post.comments)">
+                                        <div *ngIf="post.type=='image'">
+                                            <img class="postImage" [src]='post.body'>
+                                        </div>
+                                        <div *ngIf="post.type=='text'">
+                                            <div class="labelClass">
+                                                <label>aaaaaaaaaa sdfqsdfq sdf qsdfq dfqdf qdfqdfq dsfq dfq
+                                                    dfqqsdfqdfqdf qdfqdfqdfq aaaaaa</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <div class="postFooter">
+                                        <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                                        <mat-form-field class="postMatComment">
+                                            <textarea matInput rows="1" id="style-2" [(ngModel)]="post.tempComment"
+                                                style="color:black" placeholder="Leave a comment"></textarea>
+                                        </mat-form-field>
+                                        <mat-icon class="postCommentIcon">send</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
+
+
                 </div>
                 <div class="col">
                 </div>
@@ -396,8 +466,31 @@
                     </div>
                 </div>
             </div>
-
-
+            <!--******************************************************************************-->
+            <div *ngIf="infoTabStatus==3" class="friendsRow row" align="center">
+                <div class="col">
+                    <div class="row" style="justify-content: center;">
+                        <div *ngFor="let item of items" class="friend">
+                            <div>
+                                <img class="friendPhoto" src="https://picsum.photos/1200/800?image=289">
+                            </div>
+                            <div class="friendLabelContainer">
+                                <div class="friendLabel">
+                                    <div>
+                                        <strong><label style="text-align: center; margin-top: 10px; color:#3f51b5">Hatem
+                                                Bouhajja</label></strong>
+                                    </div>
+                                    <div>
+                                        <label style="
+                                            text-align: center ; margin-top: -20px;">200
+                                            mutual friends</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </mat-card>
         <div class="row bottomSpacer"></div>
     </div>

@@ -15,6 +15,19 @@
     max-height: 70vh; 
     max-width: 50vw;
     object-fit: cover;
+    vertical-align: middle;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+.imgCol{
+    text-align: center;
+    white-space: nowrap;
 }
 
 .commentsPanel{
@@ -93,7 +106,7 @@ p{
     max-width: 100%;
     min-height: 0px;
     margin: 0px;
-    padding-top : 5px;
+    padding-top : 0px;
     padding-bottom: 5px;  
 }
 
@@ -112,7 +125,7 @@ p{
     height: 40px;
     width: 40px;
     margin-left: -3px;
-    margin-top: 10px;
+    margin-top: 0px;
     border-radius: 50%;
     object-fit: cover;
   }

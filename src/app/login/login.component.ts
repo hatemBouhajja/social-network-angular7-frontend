@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@an
 import { FormControl, Validators, FormGroup, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ApiService } from '../api.service';
 import * as moment from 'moment';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,15 @@ export class LoginComponent implements OnInit {
 
   passwordStrength = 0;
   inputType = 'password';
-  registerButtonText = "Register"
+  registerButtonText = "Register";
+  loginButtonText = "Login";
   showDetails: boolean;
   viewSource: boolean;
   color = '';
   responseError = false;
-  loading = false;
+  responseErrorEmail = false;
+  regLoading = false;
+  logLoading = false;
   tabGroupTogglePrimary = 'primary';
   tabGroupToggleLight = 'light';
   afterSubmit = false;
@@ -38,6 +42,11 @@ export class LoginComponent implements OnInit {
   phone: number;
   email = '';
   birthday = '';
+
+  loginEmail = '';
+  loginPassword = '';
+
+  loginFail = false;
 
   constructor(private apiService: ApiService) {
 
@@ -53,10 +62,10 @@ export class LoginComponent implements OnInit {
       emailValidation: new FormControl(null, [Validators.required, Validators.email])
     });
 
-    this.apiService.getData().subscribe((data: Array<Object>) => {
-      this.data = data;
-      console.log(this.data);
-    });
+    // this.apiService.getData().subscribe((data: Array<Object>) => {
+    //   this.data = data;
+    //   console.log(this.data);
+    // });
 
   }
 
@@ -97,31 +106,72 @@ export class LoginComponent implements OnInit {
       gender: this.gender,
       lastName: this.myForm.get("lastNameValidation").value,
       phone: this.myForm.get("phoneValidation").value,
-      pwd: this.password
+      pwd: this.myForm.get("passwordValidation").value
     };
 
-    this.loading = true;
+    this.regLoading = true;
     this.registerButtonText = '';
-    this.apiService.postData(user).subscribe((response) => {
-      this.loading = false;
+    this.apiService.registerApi(user).subscribe((response) => {
+      this.regLoading = false;
       this.registerButtonText = 'Register';
       console.log(response);
       if (response == 'Status 200') {
         console.log("reg success");
+        this.regSuccessAlert();
+
+      } else if (response == 'Email Already Exists') {
+        this.responseErrorEmail = true;
+
       } else {
         this.responseError = true;
       }
 
     }, error => {
       this.responseError = true;
-      this.loading = false;
+      this.regLoading = false;
       this.registerButtonText = 'Register';
     });
 
   }
 
   onLogin() {
-    this.divSquare.nativeElement.classList.add('loading');
+    //this.divSquare.nativeElement.classList.add('regLoading');
+    //window.location.href = "http://localhost:4200/myprofile";
+    //this.regSuccessAlert();
+    this.logLoading = true;
+    this.loginButtonText = "";
+
+    let loginCredentials = {
+      email: this.loginEmail,
+      pwd: this.loginPassword
+    }
+
+    this.apiService.loginApi(loginCredentials).subscribe((response) => {
+      this.logLoading = false;
+      this.loginButtonText = "Login";
+
+      if (response == null) {
+        this.loginFail = true;
+      } else {
+        localStorage.setItem('user', JSON.stringify(response));
+        window.location.href = "http://localhost:4200/myprofile";
+
+      }
+    })
+
+  }
+
+  regSuccessAlert() {
+    Swal({
+      title: 'Register Success!',
+      text: 'You can now login using your info',
+      type: 'success',
+      width: '400px',
+      confirmButtonColor: '#3f51b5',
+      showConfirmButton: true,
+      showCloseButton: false,
+      focusConfirm: false
+    })
   }
 
 }

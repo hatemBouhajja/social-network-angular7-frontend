@@ -1,5 +1,6 @@
 <div class="row">
-    <div class="col">
+    <div class="col imgCol">
+        <span class="helper"></span>
         <img [src]="data.url" class="imgClass">
     </div>
     <div class="panel col">
@@ -9,40 +10,11 @@
                 <mat-divider></mat-divider>
             </div>
             <div style="margin-top: 20px;">
-                <p>
-                    <img class="commenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                <p *ngFor="let comment of data.comments">
+                    <img class="commenterImage" [src]='comment.commenterImage'>
                     &nbsp;
-                    <strong><label style="color:#3f51b5; margin-top: 20px">Boulouna143</label></strong>
-                    bbbbssssssssssb bbbbbb bbbbbbbbbbbb bbbbbbbbbbb bbbbbbbbb aaaaaaaaa aaaaaaa aaaaaa aaaa
-                    aaaaaaaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaa
-                    aaaaaaaaaaaaaaa aaaaaaaaaa aaaaaa aaaaaaa
-                    aaaaa aaaaa aaaaaa aaaaaaaaaaa aaaaaa aaaaa
-                    aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaa aaaaaaa
-                    aa aaaaaaaa aaa aaaa aaaaa aaaaaaa aaaaaaaaa
-                    <mat-divider class="separator"></mat-divider>
-                </p>
-                <p>
-                    <img class="commenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-                    &nbsp;
-                    <strong><label style="color:#3f51b5">Hatem Bouhajja</label></strong>
-                    bbb bbbbbbbbb bbbbbbbb bbbbbb bbbbbbbbb bbbbbbbb aaaaaaaaa aaaaaaa aaaaaa aaaa
-                    aaaaaaaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaa
-                    aaaaaaaaaaaaaaa aaaaaaaaaa aaaaaa aaaaaaa
-                    aaaaa aaaaa aaaaaa aaaaaaaaaaa aaaaaa aaaaa
-                    aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaa aaaaaaa
-                    aa aaaaaaaa aaa aaaa aaaaa aaaaaaa aaaaaaaaa
-                    <mat-divider class="separator"></mat-divider>
-                </p>
-                <p>
-                    <img class="commenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
-                    &nbsp;
-                    <strong><label style="color:#3f51b5">Hatem Bouhajja</label></strong>
-                    bbbbbb bbbbb bbbbbb bbbbbbb bbbb bbbbbbbbbbbb bbb aaaaaaaaa aaaaaaa aaaaaa aaaa
-                    aaaaaaaaaaaaaaa aaaaaaa aaaaaaaa aaaaaaaa
-                    aaaaaaaaaaaaaaa aaaaaaaaaa aaaaaa aaaaaaa
-                    aaaaa aaaaa aaaaaa aaaaaaaaaaa aaaaaa aaaaa
-                    aaaaaaaaaaaa aaaaaaaaaaa aaaaaaaa aaaaaaa
-                    aa aaaaaaaa aaa aaaa aaaaa aaaaaaa aaaaaaaaa
+                    <strong><label style="color:#3f51b5; margin-top: -70px">{{comment.commenter}}:</label></strong>
+                    {{comment.content}}
                     <mat-divider class="separator"></mat-divider>
                 </p>
             </div>

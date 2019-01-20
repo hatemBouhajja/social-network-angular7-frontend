@@ -28,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     MatExpansionModule,
     MatDividerModule,
     MatDialogModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    MatSelectModule
   ],
 
   providers: [MatDatepickerModule],

@@ -1,4 +1,4 @@
-<div class="background fullscreen row">
+<div class="background fullscreen row" id="style-2" style="min-height: 100vh;">
   <div class="fullscreen col" align="center">
     <span class="span-1"></span>
     <span class="span-2"></span>
@@ -57,8 +57,7 @@
                 <mat-form-field class="passwordClass" appearance="outline" [color]="passwordComponent.color">
                   <mat-label>Password</mat-label>
                   <mat-icon matSuffix>lock_outline</mat-icon>
-                  <input matInput autocomplete="off" #password [type]="inputType" placeholder="Password"
-                    formControlName="passwordValidation">
+                  <input matInput autocomplete="off" #password [type]="inputType" formControlName="passwordValidation">
                   <mat-hint align="end" aria-live="polite">
                     {{password.value.length}} / 25
                   </mat-hint>
@@ -97,17 +96,24 @@
                 Some required information is missing or wrong
               </div>
               <div *ngIf="responseError" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Sorry!</strong> An error occurred while saving your data
+                <strong>Sorry!</strong> An error occurred while saving data.
                 <button type="button" class="close" (click)="responseError=false" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
-
               </div>
-              <div *ngIf="(isFormValid()&&!responseError) || afterSubmit==false" style="height: 20px">
+
+              <div *ngIf="responseErrorEmail" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Sorry!</strong> This email alreay exists.
+                <button type="button" class="close" (click)="responseErrorEmail=false" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div *ngIf="(isFormValid() && !responseError && !responseErrorEmail) || afterSubmit==false" style="height: 20px">
               </div>
               <button class="btnClass" type="submit" mat-raised-button color="primary">{{registerButtonText}}
-                <mat-icon *ngIf="!loading" class="btnRegIconClass">playlist_add</mat-icon>
-                <div *ngIf="loading" id="fountainG">
+                <mat-icon *ngIf="!regLoading" class="btnRegIconClass">playlist_add</mat-icon>
+                <div *ngIf="regLoading" id="fountainG">
                   <div id="fountainG_1" class="fountainG"></div>
                   <div id="fountainG_2" class="fountainG"></div>
                   <div id="fountainG_3" class="fountainG"></div>
@@ -130,25 +136,35 @@
               <div class="col" style="justify-content: center;" align="center">
                 <div class="row" style="width: 240px">
                   <mat-form-field class="userNameClass" appearance="outline">
-                    <mat-label>Username</mat-label>
+                    <mat-label>Email</mat-label>
                     <mat-icon matSuffix>person_outline
                     </mat-icon>
-                    <input autocomplete="off" matInput>
+                    <input autocomplete="off" (ngModelChange)="loginFail=false" [(ngModel)]="loginEmail" matInput>
                   </mat-form-field>
                 </div>
                 <div class="row" style="width: 240px">
                   <mat-form-field class="LogPasswordClass" appearance="outline">
                     <mat-label>Password</mat-label>
                     <mat-icon matSuffix>lock_outline</mat-icon>
-                    <input matInput autocomplete="off" [type]="password" placeholder="Password">
+                    <input matInput autocomplete="off" [type]="password" (ngModelChange)="loginFail=false" [(ngModel)]="loginPassword">
                   </mat-form-field>
                 </div>
-                <div class="alert alert-danger" role="alert">
+                <div *ngIf="loginFail" class="alert alert-danger" role="alert">
                   Login Failed
                 </div>
                 <div class="row" style="justify-content: center;" align="center">
-                  <button class="btnClass" (click)="onLogin()" mat-raised-button color="primary">Login
-                    <mat-icon class="btnLogIconClass">exit_to_app</mat-icon>
+                  <button class="btnClass" (click)="onLogin()" mat-raised-button color="primary">{{loginButtonText}}
+                    <mat-icon *ngIf="!logLoading" class="btnLogIconClass">exit_to_app</mat-icon>
+                    <div *ngIf="logLoading" id="fountainG">
+                      <div id="fountainG_1" class="fountainG"></div>
+                      <div id="fountainG_2" class="fountainG"></div>
+                      <div id="fountainG_3" class="fountainG"></div>
+                      <div id="fountainG_4" class="fountainG"></div>
+                      <div id="fountainG_5" class="fountainG"></div>
+                      <div id="fountainG_6" class="fountainG"></div>
+                      <div id="fountainG_7" class="fountainG"></div>
+                      <div id="fountainG_8" class="fountainG"></div>
+                    </div>
                   </button>
                 </div>
               </div>

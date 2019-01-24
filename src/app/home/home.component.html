@@ -1,0 +1,214 @@
+<div class="background row" style="min-height: 100vh">
+  <div class="fullscreen col" align="center">
+    <span class="span-1"></span>
+    <span class="span-2"></span>
+    <span class="span-3"></span>
+    <span class="span-4"></span>
+    <span class="span-5"></span>
+    <span class="span-6"></span>
+    <span class="span-7"></span>
+    <span class="span-8"></span>
+    <span class="span-9"></span>
+    <span class="span-10"></span>
+
+    <mat-card class="globalCard" style="margin-top: 70px;">
+      <div class="row tabRow" style="margin-top: -71px;">
+        <form class="userSearch">
+          <mat-form-field class="searchUserField">
+            <input type="text" class="searchUserInput" placeholder="Search a user" aria-label="Number" matInput
+              [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+        <div class="logo">
+          <img src="assets/pds_logo.png" class="logoImg">
+        </div>
+
+
+        <div class=" bannerCol col align-self-start" align="left">
+          <div class="createPost">
+            <div>
+              <mat-form-field class="saysomething">
+                <textarea matInput placeholder="Express your self!" [(ngModel)]="postTextContent" id="style-2"></textarea>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button class="buttonPostOption" style="margin-left: 10px;">Article Link</button>
+              <button mat-raised-button class="buttonPostOption" style="margin-left: 10px;">Photo</button>
+              <button mat-raised-button class="buttonPostOption" style="margin-left: 10px;">Video</button>
+              <button mat-raised-button class="buttonPostConfirm" (click)="createNewPost()" style="margin-right: 10px;">Post
+                It!</button>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-3 tabCol align-self-end">
+          <mat-tab-group [selectedIndex]="selectedTab" class="tabGroup" (selectedTabChange)="tabClick($event)">
+            <mat-tab label="" disabled>
+            </mat-tab>
+            <mat-tab label="Home">
+            </mat-tab>
+            <mat-tab label="Profile">
+            </mat-tab>
+            <mat-tab label="Settings">
+            </mat-tab>
+            <mat-tab label="" disabled>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+        <div class="icons">
+          <div class="iconsRow row">
+            <i class="userNotification fas fa-user-plus fa-lg"></i>
+            <i class="messageNotification fas fa-envelope fa-lg"></i>
+            <i matBadge="2" matBadgeColor="warn" class="notification fas fa-exclamation-circle fa-lg"></i>
+          </div>
+        </div>
+      </div>
+
+      <!--**********************************************************************************************-->
+      <div class="row postsRow">
+        <div class="postsCol col-10">
+          <div class="row" style="padding: 0px; margin: 0px;">
+
+            <div class="col-auto" style="padding: 0px; margin: 0px;">
+              <div *ngFor="let post of posts; let i = index" class="post">
+                <div *ngIf="i%2==0">
+                  <div class="postHeader" align="start">
+                    <img class="postOwnerImage" [src]='post.ownerPhoto'>
+                    &nbsp;
+                    <strong><label style="color:#3f51b5; margin-top: 20px">{{post.owner}}</label></strong>
+                    &nbsp;
+                    <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
+                    <i class="shareIcon fa-lg fas fa-share-square"></i>
+                  </div>
+                  <div class="postBody" (click)="openDialog(post)">
+                    <div *ngIf="post.type=='image'">
+                      <img class="postImage" [src]='post.body'>
+                    </div>
+                    <div *ngIf="post.type=='text'">
+                      <div class="labelClass">
+                        <label>Ceci est un message de test</label>
+                      </div>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                  <div class="postFooter">
+                    <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                    <mat-form-field class="postMatComment">
+                      <textarea matInput rows="1" id="style-2" [(ngModel)]="post.tempComment" style="color:black"
+                        placeholder="Leave a comment"></textarea>
+                    </mat-form-field>
+                    <mat-icon class="postCommentIcon">send</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-auto" style="padding: 0px; margin: 0px;">
+              <div *ngFor="let post of posts; let j = index" class="post">
+                <div *ngIf="j%2!=0">
+                  <div class="postHeader" align="start">
+                    <img class="postOwnerImage" [src]='post.ownerPhoto'>
+                    &nbsp;
+                    <strong><label style="color:#3f51b5; margin-top: 20px">{{post.owner}}</label></strong>
+                    &nbsp;
+                    <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
+                    <i class="shareIcon fa-lg fas fa-share-square"></i>
+                  </div>
+                  <div class="postBody" (click)="openDialog(post)">
+                    <div *ngIf="post.type=='image'">
+                      <img class="postImage" [src]='post.body'>
+                    </div>
+                    <div *ngIf="post.type=='text'">
+                      <div class="labelClass">
+                        <label>Ceci est un message de test</label>
+                      </div>
+                    </div>
+                    <div>
+                    </div>
+                  </div>
+                  <div class="postFooter">
+                    <img class="postCommenterImage" src="https://images.pexels.com/photos/257360/pexels-photo-257360.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                    <mat-form-field class="postMatComment">
+                      <textarea matInput rows="1" id="style-2" [(ngModel)]="post.tempComment" style="color:black"
+                        placeholder="Leave a comment"></textarea>
+                    </mat-form-field>
+                    <mat-icon class="postCommentIcon">send</mat-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+        <div class="col">
+        </div>
+        <div class="log" id="style-2" #log>
+          <div>
+            <label style="color:#adb5bd;">Recent Activities</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+
+          <div>
+            <label style="color:black;">You commented on Hatem Bouhajja's post</label>
+          </div>
+        </div>
+      </div>
+      <!--******************************************************************************-->
+
+    </mat-card>
+    <div class="row bottomSpacer"></div>
+  </div>
+</div>

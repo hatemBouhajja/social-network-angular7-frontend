@@ -11,8 +11,12 @@ export class ApiService {
   loginUserURL = 'http://localhost:8080/user/login';
   UserUpdateURL = 'http://localhost:8080/user/update';
   ProfileUpdateURL = 'http://localhost:8080/profile/update';
-  userByIdURL = 'http://localhost:8080/user/get/id/';
+  getUserByIdURL = 'http://localhost:8080/user/get/id/';
   profileByIdURL = 'http://localhost:8080/profile/get/id/';
+  createPostURL = 'http://localhost:8080/post/create';
+  addCommentURL = 'http://localhost:8080/post/comment/add/';
+  getPostByIdURL = 'http://localhost:8080/post/get/id/';
+  getAllpostsByUserIdURL = 'http://localhost:8080/post/get/all/user/id/';
 
 
   constructor(private httpClient: HttpClient) { }
@@ -21,7 +25,7 @@ export class ApiService {
   }
 
   getUserByidApi(id) {
-    return this.httpClient.get(this.userByIdURL + id);
+    return this.httpClient.get(this.getUserByIdURL + id);
   }
 
   getProfileByidApi(id) {
@@ -42,6 +46,22 @@ export class ApiService {
 
   updateProfileApi(newProfile) {
     return this.httpClient.put(this.ProfileUpdateURL, newProfile, { responseType: 'text' });
+  }
+
+  createPostApi(newPost) {
+    return this.httpClient.post(this.createPostURL, newPost, { responseType: 'text' });
+  }
+
+  addCommentApi(newComment) {
+    return this.httpClient.post(this.addCommentURL, newComment, { responseType: 'text' });
+  }
+
+  getPostByIdApi(id) {
+    return this.httpClient.get(this.getPostByIdURL + id);
+  }
+
+  getAllPostsByUserIdApi(id) {
+    return this.httpClient.get(this.getAllpostsByUserIdURL + id);
   }
 
 }

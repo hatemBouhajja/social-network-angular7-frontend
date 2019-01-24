@@ -8,18 +8,15 @@
     border-radius: 7px;
 }
 
-.buttonAdd{
+.buttonPostConfirm{
     background-image: linear-gradient(135deg, #ecc344 0%, #e42d7f 100%);
-    left: 20px;
     color: white;
-    top: 10px;
+    float: right;
 }
 
-.buttonMsg{
+.buttonPostOption{
     background-image: linear-gradient(135deg, #000000 0%, #000000 100%);
-    left: 30px;
     color: white;
-    top: 10px;
 }
 
 .expansion-panel .mat-expansion-panel-header-description {
@@ -87,6 +84,7 @@
 .tabRow{
     width: calc(100% + 30px); 
     padding : 0;
+    z-index: 0;
 
 }
 
@@ -106,7 +104,6 @@
 .bannerCol{
     height: 50px;
     margin-top: 55px;
-
     padding: 0;
     z-index: 3;
     margin-right: -20px;
@@ -368,7 +365,7 @@
   }
 
 
-  /* Create four equal columns that sits next to each other */
+
 .column {
     -ms-flex: 25%; /* IE10 */
     flex: 25%;
@@ -382,7 +379,6 @@
     cursor: pointer;
   }
   
-  /* Responsive layout - makes a two column-layout instead of four columns */
   @media screen and (max-width: 800px) {
     .column {
       -ms-flex: 50%;
@@ -391,7 +387,6 @@
     }
   }
   
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .column {
       -ms-flex: 100%;
@@ -410,7 +405,37 @@
       background-color: white;
       padding: 0px;
       margin: 0px;
+      margin-top: 110px;
   }
+
+  .createPost{
+     height: 140px;
+     min-height: 140px;
+     width: calc(100% - 45px);
+     margin-top: 20px;
+     border-radius: 5px;
+     margin-left: 16px;
+     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+     transition: .2s ease;
+
+  }
+
+  .createPost:hover{
+    height: 140px;
+    min-height: 140px;
+    width: calc(100% - 45px);
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-left: 16px;
+    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.7);
+ }
+
+ .saysomething{ 
+    min-width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-top: 10px; 
+}
+
 
   .postsCol{
       padding: 0px;
@@ -442,20 +467,21 @@
   }
 
   .postImage{
+     display: block;
+     height: auto;
+     width: 100%; 
+     object-fit: cover;
+     transition: .3s ease;
+  }
+
+  .postImage:hover{
     display: block;
     height: auto;
-    width: 100%; 
+    width: 110%;
     object-fit: cover;
-    transition: .3s ease;
+    transform: translate(-5%, 0px);
  }
 
- .postImage:hover{
-   display: block;
-   height: auto;
-   width: 110%;
-   object-fit: cover;
-   transform: translate(-5%, 0px);
-}
 
   .postFooter{
       height: 60px;
@@ -608,8 +634,6 @@
     margin-top: 20px;
     margin-right: 20px;
 }
-
-
 
 .logo{
     position: absolute;

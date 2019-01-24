@@ -53,7 +53,7 @@ export class ProfileSetupComponent implements OnInit {
   localOffset = -1;
   step = 0;
   selectedTab = 2;
-  infoTabStatus = 0;
+  infoTabStatus = 1;
 
 
   user = JSON.parse(localStorage.getItem('user'));
@@ -71,10 +71,11 @@ export class ProfileSetupComponent implements OnInit {
   phone = this.user.phone;
   pwd = this.user.pwd;
   zip = this.user.profile.zip;
-  profilePhoto = this.user.profile.profilePhoto;
+  profilePhoto = 'https://miro.medium.com/max/854/1*60gs-SFYyooZZBxatuoNJw.jpeg';
+  userPosts = this.user.profile.posts;
 
 
-  items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  items = [0, 1, 2, 3, 4, 5, 6, 7];
   posts = [
     {
       owner: 'Hatem Bouhajja1', ownerPhoto: 'https://picsum.photos/1200/800?image=289', type: 'image', body: 'https://picsum.photos/200/800?image=249', date: '12/11/2018', comments: [
@@ -125,7 +126,7 @@ export class ProfileSetupComponent implements OnInit {
       ], tempComment: ''
     },
     {
-      owner: 'Hatem Bouhajja7', ownerPhoto: 'https://picsum.photos/1200/800?image=289', type: 'image', body: 'https://picsum.photos/1800/500?image=99', date: '12/11/2018', comments: [
+      owner: 'Hatem Bouhajja7', ownerPhoto: 'https://picsum.photos/1200/800?image=289', type: 'image', body: 'https://picsum.photos/900/950?image=209', date: '12/11/2018', comments: [
         { commenter: 'Hatem Bouhajja', commenterImage: 'https://picsum.photos/400/400?image=289', content: 'good' },
         { commenter: 'Hatem Bouhajja', commenterImage: 'https://picsum.photos/400/400?image=289', content: 'testing my comment' },
         { commenter: 'Hatem Bouhajja', commenterImage: 'https://picsum.photos/400/400?image=289', content: 'this is another comment' },
@@ -176,12 +177,20 @@ export class ProfileSetupComponent implements OnInit {
   }
 
 
-  openDialog(url, comments): void {
-    const dialogRef = this.dialog.open(DialogOverview, {
+  openDialog(post): void {
+    var postParam: any;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user.profile.posts.forEach(refPost => {
+      if (refPost.id == post.id) {
+        postParam = refPost;
+      }
+    });
+
+    const dialogRef = this.dialog.open(DialogOverviewProfile, {
       width: 'auto',
       height: 'auto',
       minHeight: '0px',
-      data: { url: url, comments: comments }
+      data: { post: postParam }
     });
   }
 
@@ -189,6 +198,7 @@ export class ProfileSetupComponent implements OnInit {
 
   ngOnInit() {
     this.updateInfoTabStatus();
+    this.initUserInfo();
   }
 
   ngAfterViewInit() {
@@ -199,6 +209,11 @@ export class ProfileSetupComponent implements OnInit {
 
 
   initUserInfo() {
+
+    this.apiService.getUserByidApi(this.user.id).subscribe((userRep) => {
+      localStorage.setItem('user', JSON.stringify(userRep));
+    })
+
     this.user = JSON.parse(localStorage.getItem('user'));
 
     this.firstName = this.upCaseFirstL(this.user.firstName);
@@ -215,6 +230,7 @@ export class ProfileSetupComponent implements OnInit {
     this.pwd = this.user.pwd;
     this.zip = this.user.profile.zip;
     this.profilePhoto = this.user.profile.profilePhoto;
+
   }
 
   addfriend() {
@@ -400,9 +416,48 @@ export class ProfileSetupComponent implements OnInit {
 
   tabClick(tab) {
     if (tab.index == 2) {
-      setTimeout(function () { window.location.href = "http://localhost:4200/myprofile"; }, 200);
+      setTimeout(() => { window.location.href = "http://localhost:4200/myprofile"; }, 200);
     }
+
+    if (tab.index == 1) {
+      setTimeout(() => { window.location.href = "http://localhost:4200/home"; }, 200);
+    }
+
   }
+
+
+  addComment(post) {
+
+    var newComment = {
+      commenter: this.upCaseFirstL(this.user.firstName) + " " + this.upCaseFirstL(this.user.lastName),
+      commenterId: this.user.id,
+      commenterImage: this.user.profile.profilePhoto,
+      content: post.tempComment,
+      idPost: post.id
+    }
+    this.apiService.addCommentApi(newComment).subscribe((rep) => {
+      console.log(rep);
+      post.tempComment = "";
+      console.log('comment added')
+      this.updateLocalPost(post.ownerId);
+
+    })
+
+  }
+
+  updateLocalPost(id) {
+    this.apiService.getAllPostsByUserIdApi(id).subscribe((rep) => {
+      var oldUser = JSON.parse(localStorage.getItem('user'));
+      console.log(rep);
+      oldUser.profile.posts = rep;
+      localStorage.setItem('user', JSON.stringify(oldUser));
+      this.user = JSON.parse(localStorage.getItem('user'));
+      console.log('comments updated');
+      console.log(this.user.profile.posts);
+
+    })
+  }
+
 
 }
 
@@ -411,8 +466,7 @@ export class ProfileSetupComponent implements OnInit {
 
 
 export interface DialogData {
-  url: string;
-  comments: Array<Object>;
+  post: Object;
 }
 
 
@@ -421,16 +475,67 @@ export interface DialogData {
   templateUrl: 'dialog-overview.html',
   styleUrls: ['./dialog-overview.scss'],
 })
-export class DialogOverview {
+export class DialogOverviewProfile {
 
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverview>,
+  constructor(private apiService: ApiService,
+    public dialogRef: MatDialogRef<DialogOverviewProfile>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  user = JSON.parse(localStorage.getItem('user'));
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  addComment(post) {
+
+    var newComment = {
+      commenter: this.upCaseFirstL(this.user.firstName) + " " + this.upCaseFirstL(this.user.lastName),
+      commenterId: this.user.id,
+      commenterImage: this.user.profile.profilePhoto,
+      content: post.tempComment,
+      idPost: post.id
+    }
+    this.apiService.addCommentApi(newComment).subscribe((rep) => {
+      console.log(rep);
+      post.tempComment = "";
+      console.log('comment added')
+      this.updateLocalPost(post.ownerId, post);
+
+    })
+
+  }
+
+  updateLocalPost(id, postToUpdate) {
+    this.apiService.getAllPostsByUserIdApi(id).subscribe((rep) => {
+      var oldUser = JSON.parse(localStorage.getItem('user'));
+      console.log(rep);
+      oldUser.profile.posts = rep;
+      localStorage.setItem('user', JSON.stringify(oldUser));
+      this.user = JSON.parse(localStorage.getItem('user'));
+      console.log('comments updated');
+      console.log(this.user.profile.posts);
+      this.user.profile.posts.forEach(post => {
+        if (postToUpdate.id == post.id) {
+          console.log('updating view');
+          console.log(post);
+          console.log(post.body);
+          console.log(this.dialogRef.componentInstance.data);
+          this.dialogRef.componentInstance.data = { post: post };
+
+          console.log('view updated');
+          console.log(this.dialogRef.componentInstance.data);
+        }
+      });
+
+    })
+  }
+
+  upCaseFirstL(string) {
+    if (string != "") {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+  }
 }
 
 

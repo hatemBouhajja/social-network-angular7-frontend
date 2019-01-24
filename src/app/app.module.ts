@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileSetupComponent } from './profile-setup/profile-setup.component';
-import { DialogOverview } from './profile-setup/profile-setup.component';
+import { DialogOverviewProfile } from './profile-setup/profile-setup.component';
+import { DialogOverviewHome } from './home/home.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -29,6 +30,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { MatSelectModule } from '@angular/material/select';
+import { HomeComponent } from './home/home.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 
 @NgModule({
@@ -36,10 +41,14 @@ import { MatSelectModule } from '@angular/material/select';
     AppComponent,
     LoginComponent,
     ProfileSetupComponent,
-    DialogOverview
+    DialogOverviewProfile,
+    DialogOverviewHome,
+    HomeComponent,
+    ProfileViewComponent
   ],
   entryComponents: [
-    DialogOverview
+    DialogOverviewProfile,
+    DialogOverviewHome
   ],
   imports: [
     BrowserModule,
@@ -65,7 +74,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     MatDialogModule,
     SweetAlert2Module.forRoot(),
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatBadgeModule
   ],
 
   providers: [MatDatepickerModule],

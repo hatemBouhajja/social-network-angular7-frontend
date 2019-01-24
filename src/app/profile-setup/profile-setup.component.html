@@ -13,6 +13,24 @@
 
         <mat-card class="globalCard" style="margin-top: 70px;">
             <div class="row tabRow" style="margin-top: -71px;">
+
+
+                <form class="userSearch">
+                    <mat-form-field class="searchUserField">
+                        <input type="text" class="searchUserInput" placeholder="Search a user" aria-label="Number"
+                            matInput [formControl]="myControl" [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </form>
+                <div class="logo">
+                    <img src="assets/pds_logo.png" class="logoImg">
+                </div>
+
+
                 <div class=" bannerCol col align-self-start" align="left">
                     <div class="row">
                         <div class=" col-4" style="min-width: 200px; margin-top: 18px">
@@ -61,6 +79,13 @@
                         <mat-tab label="" disabled>
                         </mat-tab>
                     </mat-tab-group>
+                    <div class="icons">
+                        <div class="iconsRow row">
+                            <i class="userNotification fas fa-user-plus fa-lg"></i>
+                            <i class="messageNotification fas fa-envelope fa-lg"></i>
+                            <i matBadge="2" matBadgeColor="warn" class="notification fas fa-exclamation-circle fa-lg"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -333,7 +358,7 @@
 
 
                         <div class="col-auto" style="padding: 0px; margin: 0px;">
-                            <div *ngFor="let post of posts; let i = index" class="post">
+                            <div *ngFor="let post of userPosts; let i = index" class="post">
                                 <div *ngIf="i%2==0">
                                     <div class="postHeader" align="start">
                                         <img class="postOwnerImage" [src]='post.ownerPhoto'>
@@ -343,14 +368,13 @@
                                         <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
                                         <i class="shareIcon fa-lg fas fa-share-square"></i>
                                     </div>
-                                    <div class="postBody" (click)="openDialog(post.body,post.comments)">
+                                    <div class="postBody" (click)="openDialog(post)">
                                         <div *ngIf="post.type=='image'">
                                             <img class="postImage" [src]='post.body'>
                                         </div>
                                         <div *ngIf="post.type=='text'">
                                             <div class="labelClass">
-                                                <label>aaaaaaaaaa sdfqsdfq sdf qsdfq dfqdf qdfqdfq dsfq dfq
-                                                    dfqqsdfqdfqdf qdfqdfqdfq aaaaaa</label>
+                                                <label>{{post.body}}</label>
                                             </div>
                                         </div>
                                         <div>
@@ -370,7 +394,7 @@
 
 
                         <div class="col-auto" style="padding: 0px; margin: 0px;">
-                            <div *ngFor="let post of posts; let j = index" class="post">
+                            <div *ngFor="let post of userPosts; let j = index" class="post">
                                 <div *ngIf="j%2!=0">
                                     <div class="postHeader" align="start">
                                         <img class="postOwnerImage" [src]='post.ownerPhoto'>
@@ -380,14 +404,13 @@
                                         <label style="color:#a7a7b6; margin-top: 20px">{{post.date}}</label>
                                         <i class="shareIcon fa-lg fas fa-share-square"></i>
                                     </div>
-                                    <div class="postBody" (click)="openDialog(post.body,post.comments)">
+                                    <div class="postBody" (click)="openDialog(post)">
                                         <div *ngIf="post.type=='image'">
                                             <img class="postImage" [src]='post.body'>
                                         </div>
                                         <div *ngIf="post.type=='text'">
                                             <div class="labelClass">
-                                                <label>aaaaaaaaaa sdfqsdfq sdf qsdfq dfqdf qdfqdfq dsfq dfq
-                                                    dfqqsdfqdfqdf qdfqdfqdfq aaaaaa</label>
+                                                <label>{{post.body}}</label>
                                             </div>
                                         </div>
                                         <div>
@@ -399,7 +422,7 @@
                                             <textarea matInput rows="1" id="style-2" [(ngModel)]="post.tempComment"
                                                 style="color:black" placeholder="Leave a comment"></textarea>
                                         </mat-form-field>
-                                        <mat-icon class="postCommentIcon">send</mat-icon>
+                                        <mat-icon class="postCommentIcon" (click)="addComment(post)">send</mat-icon>
                                     </div>
                                 </div>
                             </div>
